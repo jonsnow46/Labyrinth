@@ -1,0 +1,129 @@
+body {
+	margin: 0;
+	background-color: #000;
+	color: #fff;
+	font-family: Monospace;
+	font-size: 13px;
+	line-height: 24px;
+	overscroll-behavior: none;
+}
+
+@font-face {
+    font-family: 'ringbearermedium';
+    src: url('font/ringm___-webfont.woff2') format('woff2'),
+         url('font/ringm___-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+button {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+#canvas {
+	background-color: black;
+	width: 640px;
+	height: 360px;
+	margin: auto;
+	/* align: center; */
+}
+#overlay #menu {
+	text-align: center;
+	font-family: Segoe UI, Helvetica, Ubuntu, sans-serif;
+	color: white;
+}
+#scores {
+	font-size:600%; 
+	padding:0; 
+	margin:0;
+	color: white;
+}
+#title {
+	background-color: rgb(2, 19, 248);
+	color: black;
+/* 	
+	text-transform: uppercase; */
+	
+	font-size:600%; 
+		  font-family:'ringbearermedium';
+		  font-weight: normal;
+		  background: linear-gradient(#075eff 0%, #045bfd 20%, #044cd1 30%, rgb(41, 4, 250) 64%, #030000 65%, #020000 66%, #2803ff 67%, #787878 75%, #0111ff 80%, #6202fc 100%);
+		  -webkit-text-fill-color: transparent;
+		  -webkit-background-clip: text;
+		  background-clip: text;
+		
+			z-index: -1;
+			text-shadow: -1px 0 0 #f88706, 0 -1px 0 #1303f7, -2px -1px 0.125px #042eec, -1px -1px 0.125px #1505f3, -3px -2px 0.125px #070ada, -2px -2px 0.125px #2904fa, -4px -3px 0.125px #0a0efa, -3px -3px 0.125px #0905db, -5px -4px 0.125px #250cff, -4px -4px 0.125px #1a16ff, -5px -5px 0 #0a0ef5, -5px -5px 0 #1404f7;
+		  
+		
+	  
+}
+#test{
+
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+#overlay {
+	position: absolute;
+	font-size: 16px;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background: rgba(0,0,0,0.7);
+}
+
+	#overlay button {
+		background: transparent;
+		border: 0;
+		border: 1px solid rgb(54, 250, 5);
+		border-radius: 4px;
+		color: #ffffff;
+		padding: 12px 18px;
+		align-items: center;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+#notSupported {
+	
+	font-size:200%; 
+	width: 50%;
+	margin: auto;
+	background-color: #f00;
+	margin-top: 20px;
+	padding: 10px;
+}
+  
+#overlay  #end{
+
+	display: none;
+	margin-top: 20%;  
+	justify-content: center;
+	text-align: center;
+	color: white;
+  }
+  #overlay  #pause{
+
+	display: none;
+	margin-top: 20%;  
+	justify-content: center;
+	text-align: center;
+	color: white;
+  }
+  #c {
+	  
+	margin-top: 5%;  	
+	margin-left: 15%;  
+	width: 70%;
+	height: 70%;
+	display: block;
+ }

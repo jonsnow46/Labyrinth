@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <title>Labyrinth</title>
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+    <div id ="instruction" style="display: none;">    <h3>W - move up
+        <br>S - move down
+        <br>A - move left
+        <br>D - move right
+    </h3>
+    </div>
+    <div id="overlay">
+        <div id='menu'>
+            <h1 id='title'>Labyrinth 迷路</h1>
+            <button id="startButton">Play</button>
+            <h2 id='endgame'>Find the Exit! </h2>
+            <h3>W - move up
+                <br>S - move down
+                <br>A - move left
+                <br>D - move right
+            </h3>
+        </div>
+        <div id='end'>
+            <h1 id='title'>You Win!<br></h1>
+            <h5 id='score'><br>Score: 10000 Points<br></h5>
+            <button id="playAgain">Play Again</button>
+        </div>
+    <div id='pause'>
+        <h1 id='title'>Paused</h1>
+        <button id="reset">Reset</button>
+    </div></div>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="GameManager.js"></script>
+</body>
+
+</html>

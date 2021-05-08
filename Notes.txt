@@ -1,0 +1,6 @@
+Intro of game with document- Labyrinth
+Technologies used
+Changes since last presentation - Made the maze into gltf model using GLTF Exporter. Added Scoreboard. Restructured code into classes.
+Game Demo with instructions - Start Screen, Game, Pause Menu, End screen
+Code Review- Show the Managaer class and then explain the Maze class and sphere class before explaing managerclass
+Interesting aspects- Making the models and applying physics so it interacts with each other. Experimenting with it and figuring out ways to solve the physics. Had to use blender to subdivide the model into 100 parts so the ball doesnt go inside the maze and cause a glitch
