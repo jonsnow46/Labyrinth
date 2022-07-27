@@ -11,13 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/jsm/controls/OrbitControls';
 import Stats from '/jsm/libs/stats.module';
-import { GUI } from '/jsm/libs/dat.gui.module';
 import '/cannon/cannon.min';
 import { Sphere } from './Sphere.js';
 import { Maze } from './Maze.js';
 class Labyrinth {
     main() {
         return __awaiter(this, void 0, void 0, function* () {
+            //CANVAS
+            const canvas = document.querySelector('#c');
             //SCENE AND WORLD PHYSICS
             let scene = new THREE.Scene();
             let world = new CANNON.World();
@@ -33,6 +34,7 @@ class Labyrinth {
             spotLight.angle = -Math.PI / 5;
             spotLight.penumbra = 0.5;
             spotLight.castShadow = true;
+            ;
             spotLight.shadow.mapSize.width = 1024;
             spotLight.shadow.mapSize.height = 1024;
             spotLight.intensity = 0;
@@ -41,16 +43,15 @@ class Labyrinth {
             ambientLight.intensity = 1;
             scene.add(ambientLight);
             //CAMERA AND RENDERER
-            const canvas = document.querySelector('#c');
             const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas });
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             //Default camera position
             camera.position.y = 80;
             camera.position.x = 0;
             camera.position.z = 1;
+            const renderer = new THREE.WebGLRenderer({ canvas });
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             //ORBIT CONTROLS
             const controls = new OrbitControls(camera, renderer.domElement);
             controls.screenSpacePanning = true;
@@ -102,11 +103,11 @@ class Labyrinth {
             const stats = Stats();
             document.body.appendChild(stats.dom);
             //GUI panel
-            const gui = new GUI();
-            const physicsFolder = gui.addFolder("Physics");
-            physicsFolder.add(world.gravity, "x", -10.0, 10.0, 0.1);
-            physicsFolder.add(world.gravity, "z", -10.0, 10.0, 0.1);
-            physicsFolder.open();
+            // const gui = new GUI();
+            // const physicsFolder = gui.addFolder("Physics")
+            // physicsFolder.add(world.gravity, "x", -10.0, 10.0, 0.1)
+            // physicsFolder.add(world.gravity, "z", -10.0, 10.0, 0.1)
+            // physicsFolder.open()
             //clock
             const clock = new THREE.Clock();
             let flag = 0;
@@ -115,8 +116,7 @@ class Labyrinth {
             document.addEventListener("keydown", onDocumentKeyDown, false);
             function onDocumentKeyDown(event) {
                 //zooming in camera to sphere on key press
-                //let zoom = setInterval(zoomCamera, 5);
-                //cameraFunction();
+                let zoom = setInterval(zoomCamera, 5);
                 //setting default gravity  
                 world.gravity.set(0, -12, 0);
                 let keyCode = event.which;
@@ -137,7 +137,7 @@ class Labyrinth {
                     world.gravity.x = 8;
                 }
                 else if (keyCode == 32) { // RESET GRAVITY TO 0
-                    world.gravity.set(0, 0, 0);
+                    world.gravity.set(0, -12, 0);
                 }
                 else if (keyCode == ESCAPE) { // PAUSE MENU
                     if (flag != 1) {
@@ -165,19 +165,19 @@ class Labyrinth {
             }
             ;
             // //Function to zoom in to the sphere and reduce lights to only spotlight
-            // let zoomCamera = function () {
-            //     spotLight.intensity = 0.6
-            //     ambientLight.intensity = 0.02
-            //     spotLight.target = sphereMesh
-            //     spotLight.position.z = sphereMesh.position.z
-            //     spotLight.position.x = sphereMesh.position.x
-            //     camera.position.x = sphereMesh.position.x
-            //     camera.position.y = sphereMesh.position.y + 20
-            //     camera.position.z = sphereMesh.position.z + 4
-            //     controls.target.x = sphereMesh.position.x
-            //     controls.target.y = sphereMesh.position.y
-            //     controls.target.z = sphereMesh.position.z
-            // }
+            let zoomCamera = function () {
+                spotLight.intensity = 0.3;
+                ambientLight.intensity = 0.7;
+                spotLight.target = sphereMesh;
+                spotLight.position.z = sphereMesh.position.z;
+                spotLight.position.x = sphereMesh.position.x;
+                camera.position.x = sphereMesh.position.x;
+                camera.position.y = sphereMesh.position.y + 20;
+                camera.position.z = sphereMesh.position.z + 4;
+                controls.target.x = sphereMesh.position.x;
+                controls.target.y = sphereMesh.position.y;
+                controls.target.z = sphereMesh.position.z;
+            };
             let myReq, score = 10000;
             //Function to animate every frame and render it
             let animate = function () {
@@ -190,7 +190,7 @@ class Labyrinth {
                 score--;
                 sphereMesh.position.set(sphereBody.position.x, sphereBody.position.y, sphereBody.position.z);
                 sphereMesh.quaternion.set(sphereBody.quaternion.x, sphereBody.quaternion.y, sphereBody.quaternion.z, sphereBody.quaternion.w);
-                //let zoom = setInterval(zoomCamera, 5000);
+                setInterval(zoomCamera, 15000);
                 render();
                 if (sphereMesh.position.z > 50) {
                     end();
